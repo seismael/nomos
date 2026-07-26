@@ -12,7 +12,7 @@ version: "1.0.0"
 
 # Design Document Template
 
-Copy to `docs/superpowers/specs/YYYY-MM-DD-<feature>-design.md` and fill in each section. Delete sections that don't apply.
+Copy to `docs/specs/YYYY-MM-DD-<feature>-design.md` and fill in each section. Delete sections that don't apply.
 
 ---
 

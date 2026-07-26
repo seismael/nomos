@@ -1,6 +1,6 @@
 # Agent Governance Framework — Implementation Plan
 
-> **For implementers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For implementers:** Follow this plan task-by-task using subagent-driven development (recommended) or sequential execution. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build the complete agent governance framework — bootstrap, registry, AGENTS.md, all 4 artifact categories, profiles, orchestration gates, validators, and compliance tests.
 
@@ -8,7 +8,7 @@
 
 **Tech Stack:** YAML, Markdown, JSON Schema, Python (validators).
 
-**Source spec:** `docs/superpowers/specs/2026-07-25-nomos-design.md`
+**Source spec:** `docs/specs/2026-07-25-nomos-design.md`
 
 ---
 

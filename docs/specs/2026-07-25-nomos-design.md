@@ -57,9 +57,8 @@ your-project/
 │       └── registry.schema.json                 # Formal schema for registry validation
 ├── docs/
 │   ├── adr/                                     # Architecture Decision Records
-│   └── superpowers/
-│       └── specs/
-│           └── 2026-07-25-nomos-design.md
+│   ├── specs/                                   # Design specifications
+│   └── plans/                                   # Implementation plans
 └── scripts/                                     # Validation/verification tooling
     ├── validate-registry
     ├── validate-cascade
