@@ -1,0 +1,69 @@
+# Governance Gates
+
+version: "1.0.0"
+
+gates:
+  trivial:
+    description: "No gates. Direct execution."
+    checkpoints: []
+    compliance_marker: "[gov:*:*:trivial:L4:gate-skipped]"
+
+  standard:
+    description: "Verify after completion."
+    checkpoints:
+      - id: verify-complete
+        phase: after_implement
+        description: "Run tests and verify they pass. Confirm against acceptance criteria."
+        marker: "[gov:*:*:standard:L4:gate-verified]"
+        approval: none
+        required: true
+
+  complex:
+    description: "Plan approved before implementation. Review approved after."
+    checkpoints:
+      - id: plan-approved
+        phase: before_implement
+        description: "A plan or design document must exist and be reviewed before implementation begins."
+        marker: "[gov:*:*:complex:L4:gate-plan-approved]"
+        approval: human
+        required: true
+      - id: review-approved
+        phase: after_implement
+        description: "Code must be reviewed and approved before merge."
+        marker: "[gov:*:*:complex:L4:gate-review-approved]"
+        approval: peer
+        required: true
+
+  critical:
+    description: "Full governance: plan → design → review → implement → test → review → deploy."
+    checkpoints:
+      - id: plan-approved
+        phase: before_design
+        description: "Problem statement, requirements, and approach must be documented and approved."
+        marker: "[gov:*:*:critical:L4:gate-plan-approved]"
+        approval: human
+        required: true
+      - id: design-approved
+        phase: before_implement
+        description: "Detailed design must be reviewed by architecture and approved."
+        marker: "[gov:*:*:critical:L4:gate-design-approved]"
+        approval: architecture
+        required: true
+      - id: review-approved
+        phase: after_implement
+        description: "Code must pass peer review before merge."
+        marker: "[gov:*:*:critical:L4:gate-review-approved]"
+        approval: peer
+        required: true
+      - id: test-passed
+        phase: before_deploy
+        description: "Full test suite must pass. Acceptance criteria verified."
+        marker: "[gov:*:*:critical:L4:gate-test-passed]"
+        approval: none
+        required: true
+      - id: deploy-approved
+        phase: before_deploy
+        description: "Deployment plan reviewed. Rollback plan confirmed. Post-deploy monitoring window defined."
+        marker: "[gov:*:*:critical:L4:gate-deploy-approved]"
+        approval: human
+        required: true

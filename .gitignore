@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Temp
+*.tmp
+*.swp
+*~
+
+# Ralph protocol runtime state (but keep source files)
+.opencode/ralph/state/
+
+# Ralph loop protocol artifacts (if leaked to root)
+AGENT_CONTEXT_FOR_NEXT_RALPH.md
+CONTEXT_FOR_RLM.md
+CONVERSATION.md
+CURRENT_STATE.md
+NOTES_AND_LEARNINGS.md
+PREVIOUS_STATE.md
+RLM_INSTRUCTIONS.md
+SUPERVISOR_LOG.md

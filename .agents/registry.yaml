@@ -1,0 +1,547 @@
+# Nomos Registry — Single Source of Truth
+# Every artifact in .agents/ must be listed here.
+# Adding a new artifact = file + this registry entry. Nothing else.
+
+version: "1.0.0"
+framework_version: "1.0.0"
+active_profile: full
+
+layers:
+  - id: L1
+    name: base
+    description: "Always applied — baseline conventions and defaults"
+    mandatory: true
+  - id: L2
+    name: phase
+    description: "Applied by phase match"
+    mandatory: true
+  - id: L3
+    name: type
+    description: "Applied by type match"
+    mandatory: true
+  - id: L4
+    name: complexity
+    description: "Governance gates"
+    mandatory: true
+  - id: L5
+    name: project
+    description: "Project-specific overrides"
+    mandatory: false
+
+artifacts:
+  # ─── L1: Conventions (always loaded) ───
+
+  - path: base/conventions/general.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 1
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Surgical precision, YAGNI, DRY, readability, defensive minimalism"
+
+  - path: base/conventions/naming.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 2
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Descriptive names, no abbreviations, domain language"
+
+  - path: base/conventions/structure.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 3
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Domain-based organization, file size limits, module boundaries"
+
+  - path: base/conventions/testing.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 4
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "TDD as default, red-green-refactor, test pyramid"
+
+  - path: base/conventions/documentation.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 5
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Doc why not what, public API docs, ADR format"
+
+  - path: base/conventions/error-handling.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 6
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Error classification, catch at boundaries, fail fast"
+
+  # ─── L1: Config (always loaded) ───
+
+  - path: base/config/tools/default-tools.md
+    role: config
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 20
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: extend
+    description: "Git conventions, linting, testing frameworks, package management"
+
+  - path: base/config/templates/design-doc-template.md
+    role: config
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 30
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: replace
+    description: "Template for design documents"
+
+  - path: base/config/templates/adr-template.md
+    role: config
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 31
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: replace
+    description: "Template for Architecture Decision Records"
+
+  - path: base/config/templates/pr-template.md
+    role: config
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 32
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: replace
+    description: "Template for pull requests"
+
+  # ─── L1: Default Persona (always loaded) ───
+
+  - path: base/capabilities/personas/default.md
+    role: capability
+    mode: persona
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: base
+    priority: 10
+    status: active
+    context_cost: low
+    overridable: true
+    override_strategy: replace
+    description: "Core agent behaviors: precision, discipline, honesty, verification"
+
+  # ─── L2: Planning Workflows (phase=plan) ───
+
+  - path: base/capabilities/workflows/planning/feature-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: feature, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step planning workflow for features"
+
+  - path: base/capabilities/workflows/planning/bugfix-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: bugfix, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "6-step planning workflow for bugfixes"
+
+  - path: base/capabilities/workflows/planning/refactor-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: refactor, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step planning workflow for refactors"
+
+  - path: base/capabilities/workflows/planning/architecture-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: architecture, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "8-step planning workflow for architecture decisions"
+
+  - path: base/capabilities/workflows/planning/research-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: research, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "5-step planning workflow for research"
+
+  - path: base/capabilities/workflows/planning/docs-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: docs, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "5-step planning workflow for documentation"
+
+  - path: base/capabilities/workflows/planning/ops-planning.md
+    role: capability
+    mode: workflow
+    triggers: { phase: plan, type: ops, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "6-step planning workflow for operations"
+
+  # ─── L2: Design Workflows (phase=design) ───
+
+  - path: base/capabilities/workflows/design/feature-design.md
+    role: capability
+    mode: workflow
+    triggers: { phase: design, type: feature, complexity: [standard, complex, critical], valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "8-step design workflow for features"
+
+  - path: base/capabilities/workflows/design/architecture-design.md
+    role: capability
+    mode: workflow
+    triggers: { phase: design, type: architecture, complexity: [standard, complex, critical], valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "8-step design workflow for architecture"
+
+  # ─── L2: Implementation Workflows (phase=implement) ───
+
+  - path: base/capabilities/workflows/implementation/feature-implementation.md
+    role: capability
+    mode: workflow
+    triggers: { phase: implement, type: feature, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "8-step TDD implementation workflow for features"
+
+  - path: base/capabilities/workflows/implementation/bugfix-implementation.md
+    role: capability
+    mode: workflow
+    triggers: { phase: implement, type: bugfix, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step implementation workflow for bugfixes"
+
+  - path: base/capabilities/workflows/implementation/refactor-implementation.md
+    role: capability
+    mode: workflow
+    triggers: { phase: implement, type: refactor, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step implementation workflow for refactors"
+
+  - path: base/capabilities/workflows/implementation/ops-implementation.md
+    role: capability
+    mode: workflow
+    triggers: { phase: implement, type: ops, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step implementation workflow for operations"
+
+  # ─── L2: Testing Workflows (phase=test) ───
+
+  - path: base/capabilities/workflows/testing/feature-testing.md
+    role: capability
+    mode: workflow
+    triggers: { phase: test, type: feature, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "8-step testing workflow for features"
+
+  - path: base/capabilities/workflows/testing/bugfix-testing.md
+    role: capability
+    mode: workflow
+    triggers: { phase: test, type: bugfix, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "5-step testing workflow for bugfixes"
+
+  # ─── L2: Review Workflows (phase=review) ───
+
+  - path: base/capabilities/workflows/review/code-review.md
+    role: capability
+    mode: workflow
+    triggers: { phase: review, type: [feature, bugfix, refactor], complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on:
+      - "base/capabilities/personas/default.md"
+      - "base/capabilities/personas/reviewer.md"
+    description: "7-step code review workflow"
+
+  - path: base/capabilities/workflows/review/architecture-review.md
+    role: capability
+    mode: workflow
+    triggers: { phase: review, type: architecture, complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on:
+      - "base/capabilities/personas/default.md"
+      - "base/capabilities/personas/reviewer.md"
+    description: "8-step architecture review workflow"
+
+  # ─── L2: Deploy Workflows (phase=deploy) ───
+
+  - path: base/capabilities/workflows/deploy/deployment.md
+    role: capability
+    mode: workflow
+    triggers: { phase: deploy, type: [feature, bugfix, refactor, ops], complexity: "*", valid: true }
+    layer: phase
+    priority: 10
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "7-step deployment workflow"
+
+  # ─── L3: Skills (by type) ───
+
+  - path: base/capabilities/skills/feature-development.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: feature, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Feature development patterns, deliverables, anti-patterns"
+
+  - path: base/capabilities/skills/bug-resolution.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: bugfix, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Bug diagnosis approach: reproduce, isolate, hypothesize, verify"
+
+  - path: base/capabilities/skills/refactoring.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: refactor, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Refactoring patterns, safety net approach, when not to refactor"
+
+  - path: base/capabilities/skills/architecture.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: architecture, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Design heuristics: SOLID, DDD, CQRS, event-driven, hexagonal"
+
+  - path: base/capabilities/skills/research.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: research, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Source hierarchy, output format, confidence levels"
+
+  - path: base/capabilities/skills/documentation.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: docs, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "Doc types, explain why not what, keep current"
+
+  - path: base/capabilities/skills/ops.md
+    role: capability
+    mode: skill
+    triggers: { phase: "*", type: ops, complexity: "*", valid: true }
+    layer: type
+    priority: 20
+    status: active
+    context_cost: medium
+    description: "IaC principle, safety checklist, common tasks"
+
+  # ─── L3: Specialized Personas (by type/phase) ───
+
+  - path: base/capabilities/personas/architect.md
+    role: capability
+    mode: persona
+    triggers: { phase: "*", type: architecture, complexity: "*", valid: true }
+    layer: type
+    priority: 15
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "Trade-off thinking, design for change, SOLID, DDD, ADR process"
+
+  - path: base/capabilities/personas/reviewer.md
+    role: capability
+    mode: persona
+    triggers: { phase: review, type: "*", complexity: "*", valid: true }
+    layer: type
+    priority: 15
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "Review focus areas, feedback style, approval criteria"
+
+  - path: base/capabilities/personas/implementer.md
+    role: capability
+    mode: persona
+    triggers: { phase: implement, type: "*", complexity: "*", valid: true }
+    layer: type
+    priority: 15
+    status: active
+    context_cost: medium
+    depends_on: ["base/capabilities/personas/default.md"]
+    description: "Follow the plan, TDD, small commits, escalation criteria"
+
+  # ─── L4: Orchestration (complexity gated) ───
+
+  - path: base/orchestration/gates.yaml
+    role: orchestration
+    triggers: { phase: "*", type: "*", complexity: [standard, complex, critical], valid: true }
+    layer: complexity
+    priority: 40
+    status: active
+    context_cost: medium
+    description: "Complexity-based governance gates and checkpoints"
+
+  - path: base/orchestration/approval-flows.md
+    role: orchestration
+    triggers: { phase: "*", type: "*", complexity: [complex, critical], valid: true }
+    layer: complexity
+    priority: 41
+    status: active
+    context_cost: medium
+    depends_on: ["base/orchestration/gates.yaml"]
+    description: "Human approval, peer review, architecture review flows"
+
+  - path: base/orchestration/subagents/default-subagents.md
+    role: orchestration
+    triggers: { phase: "*", type: "*", complexity: [standard, complex, critical], valid: true }
+    layer: complexity
+    priority: 42
+    status: active
+    context_cost: medium
+    description: "When to delegate, subagent types, delegation protocol"
+
+  # ─── L5: Project Layer Readmes ───
+
+  - path: project/context/README.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: project
+    priority: 50
+    status: active
+    context_cost: low
+    description: "Project context — domain, tech stack, team, conventions"
+
+  - path: project/conventions/README.md
+    role: convention
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: project
+    priority: 51
+    status: active
+    context_cost: low
+    description: "Project-specific convention overrides"
+
+  - path: project/config/README.md
+    role: config
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: project
+    priority: 52
+    status: active
+    context_cost: low
+    description: "Project-specific config and tooling"
+
+  - path: project/orchestration/README.md
+    role: orchestration
+    triggers: { phase: "*", type: "*", complexity: "*", valid: true }
+    layer: project
+    priority: 53
+    status: active
+    context_cost: low
+    description: "Project-specific orchestration rules"

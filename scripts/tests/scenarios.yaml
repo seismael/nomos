@@ -1,0 +1,173 @@
+# Behavioral test scenarios for agent governance compliance.
+# Each scenario: given a task classification, what artifacts should resolve?
+
+scenarios:
+  - name: "Plan a complex feature"
+    triggers: { phase: plan, type: feature, complexity: complex }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/planning/feature-planning.md
+      - base/capabilities/skills/feature-development.md
+      - base/orchestration/gates.yaml
+      - base/orchestration/approval-flows.md
+      - base/orchestration/subagents/default-subagents.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: [plan-approved, review-approved]
+
+  - name: "Fix a trivial bug"
+    triggers: { phase: implement, type: bugfix, complexity: trivial }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/implementation/bugfix-implementation.md
+      - base/capabilities/skills/bug-resolution.md
+      - base/capabilities/personas/implementer.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: []
+
+  - name: "Design a critical architecture"
+    triggers: { phase: design, type: architecture, complexity: critical }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/design/architecture-design.md
+      - base/capabilities/skills/architecture.md
+      - base/capabilities/personas/architect.md
+      - base/orchestration/gates.yaml
+      - base/orchestration/approval-flows.md
+      - base/orchestration/subagents/default-subagents.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: [plan-approved, design-approved, review-approved, test-passed, deploy-approved]
+
+  - name: "Review a standard feature"
+    triggers: { phase: review, type: feature, complexity: standard }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/review/code-review.md
+      - base/capabilities/skills/feature-development.md
+      - base/capabilities/personas/reviewer.md
+      - base/orchestration/gates.yaml
+      - base/orchestration/subagents/default-subagents.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: [verify-complete]
+
+  - name: "Trivial docs update"
+    triggers: { phase: plan, type: docs, complexity: trivial }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/planning/docs-planning.md
+      - base/capabilities/skills/documentation.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: []
+
+  - name: "Research task"
+    triggers: { phase: plan, type: research, complexity: standard }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/planning/research-planning.md
+      - base/capabilities/skills/research.md
+      - base/orchestration/gates.yaml
+      - base/orchestration/subagents/default-subagents.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: [verify-complete]
+
+  - name: "Deploy a critical ops change"
+    triggers: { phase: deploy, type: ops, complexity: critical }
+    expected_artifacts:
+      - base/conventions/general.md
+      - base/conventions/naming.md
+      - base/conventions/structure.md
+      - base/conventions/testing.md
+      - base/conventions/documentation.md
+      - base/conventions/error-handling.md
+      - base/config/tools/default-tools.md
+      - base/config/templates/design-doc-template.md
+      - base/config/templates/adr-template.md
+      - base/config/templates/pr-template.md
+      - base/capabilities/personas/default.md
+      - base/capabilities/workflows/deploy/deployment.md
+      - base/capabilities/skills/ops.md
+      - base/orchestration/gates.yaml
+      - base/orchestration/approval-flows.md
+      - base/orchestration/subagents/default-subagents.md
+      - project/context/README.md
+      - project/conventions/README.md
+      - project/config/README.md
+      - project/orchestration/README.md
+    expected_gates: [plan-approved, design-approved, review-approved, test-passed, deploy-approved]

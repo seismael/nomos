@@ -1,0 +1,4 @@
+name: standard
+description: "Conventions + phase workflows + type skills + project context. No orchestration gates."
+active_layers: [L1, L2, L3, L5]
+active_categories: [capabilities, conventions, config]

@@ -1,0 +1,4 @@
+name: full
+description: "All layers, all categories, full orchestration with governance gates."
+active_layers: [L1, L2, L3, L4, L5]
+active_categories: [capabilities, conventions, config, orchestration]

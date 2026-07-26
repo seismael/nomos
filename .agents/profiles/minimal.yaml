@@ -1,0 +1,4 @@
+name: minimal
+description: "Baseline conventions only. No workflows, skills, or gates."
+active_layers: [L1]
+active_categories: [conventions]
