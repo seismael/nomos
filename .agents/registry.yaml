@@ -1,4 +1,4 @@
-# Nomos Registry — Single Source of Truth
+# Agent Governance Registry — Single Source of Truth
 # Every artifact in .agents/ must be listed here.
 # Adding a new artifact = file + this registry entry. Nothing else.
 

@@ -1,8 +1,8 @@
-# Nomos — Implementation Plan
+# Agent Governance Framework — Implementation Plan
 
-> **For Nomos operators:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For implementers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build Nomos — bootstrap, registry, AGENTS.md, all 4 artifact categories, profiles, orchestration gates, validators, and compliance tests.
+**Goal:** Build the complete agent governance framework — bootstrap, registry, AGENTS.md, all 4 artifact categories, profiles, orchestration gates, validators, and compliance tests.
 
 **Architecture:** Layered dispatch. `bootstrap.md` → `registry.yaml` → profile → `AGENTS.md` cascade → artifacts. Four consolidated types: capabilities, conventions, config, orchestration.
 

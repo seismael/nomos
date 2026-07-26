@@ -1,6 +1,6 @@
-# Nomos — Bootstrap
+# Agent Governance — Bootstrap
 
-> **READ THIS FIRST.** This is the single entry point to Nomos.
+> **READ THIS FIRST.** This is the single entry point to the agent governance framework.
 > Every other file is discovered through this one. Read it once at session start.
 
 ## 1. Load the Registry

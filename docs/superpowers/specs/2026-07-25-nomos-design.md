@@ -1,4 +1,4 @@
-# Nomos — Design Spec v2
+# Agent Governance Framework — Design Spec v2
 
 **Date:** 2026-07-25
 **Status:** Design approved (v2 — consolidated)
@@ -20,7 +20,7 @@ A reusable, layered governance framework that controls and routes AI coding agen
 ### 2.1 Directory Structure
 
 ```
-nomos/
+your-project/
 ├── AGENTS.md                                    # Central conductor
 ├── .agents/
 │   ├── bootstrap.md                             # SINGLE ENTRY POINT — agent reads this first
@@ -96,7 +96,7 @@ nomos/
 This is the first and only file an agent must read to onboard to the governance system. It contains:
 
 ```markdown
-# Nomos — Bootstrap
+# Agent Governance — Bootstrap
 
 ## 1. Load the registry
 Read `.agents/registry.yaml` — this is the single source of truth for all artifacts.

@@ -13,7 +13,7 @@ version: "1.0.0"
 
 # Default Agent Persona
 
-This persona is the baseline behavioral model for all agents operating under Nomos. Specialized personas (architect, reviewer, implementer) layer additional constraints on top of this base.
+This persona is the baseline behavioral model for all agents operating under the governance framework. Specialized personas (architect, reviewer, implementer) layer additional constraints on top of this base.
 
 ## Core Behaviors
 
